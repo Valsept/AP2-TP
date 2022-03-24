@@ -1,22 +1,22 @@
 //////////////////////////////////////////////////////////////////////////////////////
 //
-// Ce programme dispose du type "Liste d'entiers" et des primitives associées.
+// Ce programme dispose du type "Liste d'entiers" et des primitives associÃ©es.
 //
 // Le nom du type est TListe.
 //
-// Complétez tous les sous-programmes qui suivent dans l'ordre où
+// ComplÃ©tez tous les sous-programmes qui suivent dans l'ordre oÃ¹
 // ils apparaissent. Ils contiennent des instructions bidons qui ne sont 
-// là que pour utiliser les paramètres et éviter des messages d'avertissement.
-// Remplacez les par les vôtres.
-// A chaque progression, faites une exécution.
+// lÃ  que pour utiliser les paramÃ¨tres et Ã©viter des messages d'avertissement.
+// Remplacez les par les vÃ´tres.
+// A chaque progression, faites une exÃ©cution.
 //
-// Le main contient déjà des tests de ces sous-programmes.
+// Le main contient dÃ©jÃ  des tests de ces sous-programmes.
 //
-// Les sous-programmes dont le nom termine par R doivent être faits récursivement.
-// Les sous-programmes dont le nom termine par I doivent être faits itérativement.
+// Les sous-programmes dont le nom termine par R doivent Ãªtre faits rÃ©cursivement.
+// Les sous-programmes dont le nom termine par I doivent Ãªtre faits itÃ©rativement.
 // 
 // SOUVENEZ-VOUS QUE, EN TP NOTE, SEUL LE FAIT D'OBTENIR LE RESULTAT ATTENDU APPORTE DES POINTS.
-// Ce programme informe de la note maximum possible au vu de ce que vous avez programmé.
+// Ce programme informe de la note maximum possible au vu de ce que vous avez programmÃ©.
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
@@ -27,108 +27,130 @@
 
 
 int TailleI(TListe L)
-// Donne le nombre d'éléments de la liste. Version itérative
+// Donne le nombre d'Ã©lÃ©ments de la liste. Version itÃ©rative
 {
-	return (int) sizeof (L);	// Instruction bidon, à remplacer !
+	int compteur = 0;
+	while (!EstVide(L)) {
+		compteur += 1;
+		L = Reste(L);
+	}
+	return compteur;
 }
 
 int TailleR(TListe L)
-// Donne le nombre d'éléments de la liste. Version récursive
+// Donne le nombre d'Ã©lÃ©ments de la liste. Version rÃ©cursive
 {
-	return (int)sizeof(L);	// Instruction bidon, à remplacer !
+	//Taille[0] = 0
+	//Taille[(V,R)] = 1 + Taille[R]
+
+	if (EstVide(L)) {
+		return 0;
+	} else {
+		return 1 + TailleR(Reste(L));
+	}
 }
 
 TElement SommeI(TListe L)
-// Donne la somme des éléments de la liste. Version itérative
+// Donne la somme des Ã©lÃ©ments de la liste. Version itÃ©rative
 {
-	return (int)sizeof(L);	// Instruction bidon, à remplacer !
+	int somme = 0;
+	while (!EstVide(L)) {
+		somme += Tete(L);
+		L = Reste(L);
+	}
+	return somme;
 }
 
 TElement SommeR(TListe L)
-// Donne la somme des éléments de la liste. Version récursive
+// Donne la somme des Ã©lÃ©ments de la liste. Version rÃ©cursive
 {
-	return (int)sizeof(L);	// Instruction bidon, à remplacer !
+	int somme = 0;
+	while (!EstVide(L)) {
+		somme += Tete(L);
+		L = Reste(L);
+	}
+	return somme;
 }
 
 void MinEtMaxI(TListe L, TElement *pointeurSurMin, TElement *pointeurSurMax)
-// L est supposée non vide
-// Cette procédure donne la plus petite et la plus grande valeurs de L.
-// Version itérative.
+// L est supposÃ©e non vide
+// Cette procÃ©dure donne la plus petite et la plus grande valeurs de L.
+// Version itÃ©rative.
 {
-	*pointeurSurMin = *pointeurSurMax = (int)sizeof(L);	// Instruction bidon, à remplacer !
+	*pointeurSurMin = *pointeurSurMax = (int)sizeof(L);	// Instruction bidon, Ã  remplacer !
 }
 
 void MinEtMaxR(TListe L, TElement *pointeurSurMin, TElement *pointeurSurMax)
-// L est supposée non vide
-// Cette procédure donne la plus petite et la plus grande valeurs de L.
-// Version itérative.
+// L est supposÃ©e non vide
+// Cette procÃ©dure donne la plus petite et la plus grande valeurs de L.
+// Version itÃ©rative.
 {
-	*pointeurSurMin = *pointeurSurMax = (int)sizeof(L);	// Instruction bidon, à remplacer !
+	*pointeurSurMin = *pointeurSurMax = (int)sizeof(L);	// Instruction bidon, Ã  remplacer !
 }
 
 int NombreOccurrencesI(TElement valeurCherchee, TListe L)
 // Donne le nombre d'occurrences de valeurCherchee dans L.
-// Version itérative.
+// Version itÃ©rative.
 {
-	return valeurCherchee+(int)sizeof(L);	// Instruction bidon, à remplacer !
+	return valeurCherchee+(int)sizeof(L);	// Instruction bidon, Ã  remplacer !
 }
 
 int NombreOccurrencesR(TElement valeurCherchee, TListe L)
 // Donne le nombre d'occurrences de valeurCherchee dans L.
-// Version récursive.
+// Version rÃ©cursive.
 {
-	return valeurCherchee+(int)sizeof(L);	// Instruction bidon, à remplacer !
+	return valeurCherchee+(int)sizeof(L);	// Instruction bidon, Ã  remplacer !
 }
 
 bool PresenceI(TElement valeurCherchee, TListe L)
-// Vérifie la présence de valeurCherchee dans L. Version itérative !
+// VÃ©rifie la prÃ©sence de valeurCherchee dans L. Version itÃ©rative !
 {
-	return 	valeurCherchee == (int)sizeof(L);	// Instruction bidon, à remplacer !
+	return 	valeurCherchee == (int)sizeof(L);	// Instruction bidon, Ã  remplacer !
 }
 
 bool PresenceR(TElement valeurCherchee, TListe L)
-// Vérifie la présence de valeurCherchee dans L. Version itérative !
+// VÃ©rifie la prÃ©sence de valeurCherchee dans L. Version itÃ©rative !
 {
-	return 	valeurCherchee == (int)sizeof(L);	// Instruction bidon, à remplacer !
+	return 	valeurCherchee == (int)sizeof(L);	// Instruction bidon, Ã  remplacer !
 }
 
 void AfficherListeI(TListe L)
-// Affiche la liste entre parenthèses sans passer à la ligne.
+// Affiche la liste entre parenthÃ¨ses sans passer Ã  la ligne.
 // Exemple : (1, 2, 3)
 {
-	printf ("%d\n", (int)sizeof(L));	// Instruction bidon, à remplacer !
+	printf ("%d\n", (int)sizeof(L));	// Instruction bidon, Ã  remplacer !
 }
 
 TListe InsertionEnQueueI(TElement v, TListe L)
-// Donne une ^liste égale à L mais avec une valeur en plus à la fin : v. Version itérative !
+// Donne une ^liste Ã©gale Ã  L mais avec une valeur en plus Ã  la fin : v. Version itÃ©rative !
 {
-	return Cons (v+(int)sizeof (L), ConsVide ());	// Instruction bidon, à remplacer !
+	return Cons (v+(int)sizeof (L), ConsVide ());	// Instruction bidon, Ã  remplacer !
 }
 
 TListe InsertionEnQueueR(TElement v, TListe L)
-// Donne une ^liste égale à L mais avec une valeur en plus à la fin : v. Version récursive !
+// Donne une ^liste Ã©gale Ã  L mais avec une valeur en plus Ã  la fin : v. Version rÃ©cursive !
 {
-	return Cons(v + (int)sizeof(L), ConsVide());	// Instruction bidon, à remplacer !
+	return Cons(v + (int)sizeof(L), ConsVide());	// Instruction bidon, Ã  remplacer !
 }
 
 void RemplacementsR(TElement v1, TElement v2, TListe *pointeurSurL)
 // Remplace les occurrences de v1 par v2 dans *pointeurSurL
 {
-	v1 = v2 + (int)sizeof(*pointeurSurL);	// Instruction bidon, à remplacer !
+	v1 = v2 + (int)sizeof(*pointeurSurL);	// Instruction bidon, Ã  remplacer !
 }
 
 TListe InversionR(TListe L)
-// Donne une liste contenant les mêmes éléments que L mais dans l'ordre inverse. 
-// Version itérative !
+// Donne une liste contenant les mÃªmes Ã©lÃ©ments que L mais dans l'ordre inverse. 
+// Version itÃ©rative !
 {
-	return Cons((int)sizeof(L), ConsVide());	// Instruction bidon, à remplacer !
+	return Cons((int)sizeof(L), ConsVide());	// Instruction bidon, Ã  remplacer !
 }
 
 TListe InversionI(TListe L)
-// Donne une liste contenant les mêmes éléments que L mais dans l'ordre inverse. 
-// Version récursive !
+// Donne une liste contenant les mÃªmes Ã©lÃ©ments que L mais dans l'ordre inverse. 
+// Version rÃ©cursive !
 {
-	return Cons((int)sizeof(L), ConsVide());	// Instruction bidon, à remplacer !
+	return Cons((int)sizeof(L), ConsVide());	// Instruction bidon, Ã  remplacer !
 }
 
 int main(int, char **)
@@ -141,13 +163,13 @@ int main(int, char **)
 
 	int NombrePoints = 0;
 
-	// Les listes qui seront utilisées dans les tests (de tailles 0, 1, 2, 5 et 8)
+	// Les listes qui seront utilisÃ©es dans les tests (de tailles 0, 1, 2, 5 et 8)
 	TListe	L0, L1, L2, L5, L8;
 
 	try {
 		////////////////////////////////////////////////////
 		//
-		// Création de listes de Tailles 0, 1, 2, 5 et 8
+		// CrÃ©ation de listes de Tailles 0, 1, 2, 5 et 8
 		//
 		////////////////////////////////////////////////////
 		L0 = ConsVide();
