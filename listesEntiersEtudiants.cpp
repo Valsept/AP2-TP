@@ -65,11 +65,14 @@ TElement SommeR(TListe L)
 // Donne la somme des éléments de la liste. Version récursive
 {
 	int somme = 0;
-	while (!EstVide(L)) {
-		somme += Tete(L);
+	if (EstVide(L)) {
+		return 0;
+	}else {
+		somme = Tete(L);
 		L = Reste(L);
+		return somme + SommeR(L);
+		
 	}
-	return somme;
 }
 
 void MinEtMaxI(TListe L, TElement *pointeurSurMin, TElement *pointeurSurMax)
