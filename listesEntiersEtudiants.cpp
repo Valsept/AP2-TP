@@ -79,8 +79,18 @@ void MinEtMaxI(TListe L, TElement *pointeurSurMin, TElement *pointeurSurMax)
 // L est supposée non vide
 // Cette procédure donne la plus petite et la plus grande valeurs de L.
 // Version itérative.
-{
-	*pointeurSurMin = *pointeurSurMax = (int)sizeof(L);	// Instruction bidon, à remplacer !
+{	
+	*pointeurSurMin = *pointeurSurMax = Tete(L);
+	L = Reste(L);
+	while (!EstVide(L)) {
+		if (Tete(L) > *pointeurSurMax)
+			*pointeurSurMax = Tete(L);
+
+		if (Tete(L) < *pointeurSurMin)
+			*pointeurSurMin = Tete(L);
+
+		L = Reste(L);
+	}
 }
 
 void MinEtMaxR(TListe L, TElement *pointeurSurMin, TElement *pointeurSurMax)
