@@ -138,10 +138,9 @@ int NombreOccurrencesR(TElement valeurCherchee, TListe L)
         return nbocc;
     }
     if (Tete(p) == valeurCherchee){
-        nbocc += 1;
-        p = Reste(p);
-    } else {
         return 1 + NombreOccurrencesR(valeurCherchee), Reste(p));
+    } else {
+        return NombreOccurrencesR(valeurCherchee), Reste(p));
     }
 }
 
