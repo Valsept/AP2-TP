@@ -132,14 +132,16 @@ int NombreOccurrencesR(TElement valeurCherchee, TListe L)
 // Donne le nombre d'occurrences de valeurCherchee dans L.
 // Version récursive.
 {
-    if(EstVide(p)){
-        return 0; 
+    TListe p = L;
+    int nbocc = 0;
+	if(EstVide(p)){
+        return nbocc;
     }
-    if (Tete(L) == valeurCherchee){
-        return valeurCherchee;
+    if (Tete(p) == valeurCherchee){
+        nbocc += 1;
+        p = Reste(p);
     } else {
-	L = Reste(L);
-        return 1 + PresenceR(valeurCherchee, L);
+        return 1 + NombreOccurrencesR(Tete(p), Reste(p));
     }
 }
 
@@ -152,15 +154,7 @@ bool PresenceI(TElement valeurCherchee, TListe L)
 bool PresenceR(TElement valeurCherchee, TListe L)
 // Vérifie la présence de valeurCherchee dans L. Version itérative !
 {
-    if(EstVide(p)){
-        return 0; 
-    }
-    if (Tete(L) == valeurCherchee){
-        return valeurCherchee;
-    } else {
-	L = Reste(L);
-        return 1 + PresenceR(valeurCherchee, L);
-    }
+	return 	valeurCherchee == (int)sizeof(L);	// Instruction bidon, à remplacer !
 }
 
 void AfficherListeI(TListe L)
