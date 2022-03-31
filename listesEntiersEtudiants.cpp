@@ -98,14 +98,34 @@ void MinEtMaxR(TListe L, TElement *pointeurSurMin, TElement *pointeurSurMax)
 // Cette procédure donne la plus petite et la plus grande valeurs de L.
 // Version itérative.
 {
-	*pointeurSurMin = *pointeurSurMax = (int)sizeof(L);	// Instruction bidon, à remplacer !
+	*pointeurSurMin = *pointeurSurMax = Tete(L);
+	L = Reste(L);
+	while (!EstVide(L)) {
+		if (Tete(L) > *pointeurSurMax)
+			*pointeurSurMax = Tete(L);
+
+		if (Tete(L) < *pointeurSurMin)
+			*pointeurSurMin = Tete(L);
+
+		L = Reste(L);
+	}
 }
 
 int NombreOccurrencesI(TElement valeurCherchee, TListe L)
 // Donne le nombre d'occurrences de valeurCherchee dans L.
 // Version itérative.
 {
-	return valeurCherchee+(int)sizeof(L);	// Instruction bidon, à remplacer !
+	TElement valeurCherchee = 3;
+	TListe p = L;
+	int nbocc = 0;
+
+	while (!EstVide(p)) {
+		if (Tete(p) == valeurCherchee) {
+			nbocc += 1;
+			p = Reste(p);
+		}
+	}
+	return nbocc;
 }
 
 int NombreOccurrencesR(TElement valeurCherchee, TListe L)
