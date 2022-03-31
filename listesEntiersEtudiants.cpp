@@ -117,7 +117,6 @@ int NombreOccurrencesI(TElement valeurCherchee, TListe L)
 // Donne le nombre d'occurrences de valeurCherchee dans L.
 // Version itérative.
 {
-	TElement valeurCherchee = 3;
 	TListe p = L;
 	int nbocc = 0;
 
@@ -126,9 +125,14 @@ int NombreOccurrencesI(TElement valeurCherchee, TListe L)
 			nbocc += 1;
 			p = Reste(p);
 		}
+		else {
+			p = Reste(p);
+		}
 	}
+	
 	return nbocc;
 }
+
 
 int NombreOccurrencesR(TElement valeurCherchee, TListe L)
 // Donne le nombre d'occurrences de valeurCherchee dans L.
@@ -141,24 +145,58 @@ int NombreOccurrencesR(TElement valeurCherchee, TListe L)
 	}
 	if (Tete(p) == valeurCherchee) {
 		return 1 + NombreOccurrencesR(valeurCherchee, Reste(p));
+
 	}
+
 	else {
 		return NombreOccurrencesR(valeurCherchee, Reste(p));
 	}
+
 }
 
 bool PresenceI(TElement valeurCherchee, TListe L)
 // Vérifie la présence de valeurCherchee dans L. Version itérative !
 {
-	while (!EstVide(p)){
+
+	while (!EstVide(L))
+
+	{
+		if (Tete(L) == valeurCherchee)
+		{
+			return true;
+
+
+		}
+		else {
+			L = Reste(L);
+		}
 
 	}
+
+	return false;
 }
 
 bool PresenceR(TElement valeurCherchee, TListe L)
 // Vérifie la présence de valeurCherchee dans L. Version itérative !
 {
-	return 	valeurCherchee == (int)sizeof(L);	// Instruction bidon, à remplacer !
+
+
+
+	if (EstVide(L)) {
+		return 0;
+	}
+
+	if (valeurCherchee == Tete(L))
+	{
+		return valeurCherchee;
+
+	}
+
+	else {
+		L = Reste(L);
+		return PresenceR(valeurCherchee, L);
+	}
+
 }
 
 void AfficherListeI(TListe L)
