@@ -132,7 +132,14 @@ int NombreOccurrencesR(TElement valeurCherchee, TListe L)
 // Donne le nombre d'occurrences de valeurCherchee dans L.
 // Version récursive.
 {
-	return valeurCherchee+(int)sizeof(L);	// Instruction bidon, à remplacer !
+	if(EstVide(p){
+        return 0;
+    }
+    if (Tete(L) == valeurCherchee){
+        return valeurCherchee;
+    } else {
+        return 1 + NombreOccurrencesR(Tete(L), Reste(L));
+    }
 }
 
 bool PresenceI(TElement valeurCherchee, TListe L)
