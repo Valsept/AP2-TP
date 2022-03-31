@@ -141,7 +141,7 @@ int NombreOccurrencesR(TElement valeurCherchee, TListe L)
         nbocc += 1;
         p = Reste(p);
     } else {
-        return 1 + NombreOccurrencesR(Tete(p), Reste(p));
+        return 1 + NombreOccurrencesR(valeurCherchee), Reste(p));
     }
 }
 
