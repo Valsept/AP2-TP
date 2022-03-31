@@ -45,7 +45,8 @@ int TailleR(TListe L)
 
 	if (EstVide(L)) {
 		return 0;
-	} else {
+	}
+	else {
 		return 1 + TailleR(Reste(L));
 	}
 }
@@ -67,19 +68,20 @@ TElement SommeR(TListe L)
 	int somme = 0;
 	if (EstVide(L)) {
 		return 0;
-	}else {
+	}
+	else {
 		somme = Tete(L);
 		L = Reste(L);
 		return somme + SommeR(L);
-		
+
 	}
 }
 
-void MinEtMaxI(TListe L, TElement *pointeurSurMin, TElement *pointeurSurMax)
+void MinEtMaxI(TListe L, TElement* pointeurSurMin, TElement* pointeurSurMax)
 // L est supposée non vide
 // Cette procédure donne la plus petite et la plus grande valeurs de L.
 // Version itérative.
-{	
+{
 	*pointeurSurMin = *pointeurSurMax = Tete(L);
 	L = Reste(L);
 	while (!EstVide(L)) {
@@ -93,51 +95,121 @@ void MinEtMaxI(TListe L, TElement *pointeurSurMin, TElement *pointeurSurMax)
 	}
 }
 
-void MinEtMaxR(TListe L, TElement *pointeurSurMin, TElement *pointeurSurMax)
+void MinEtMaxR(TListe L, TElement* pointeurSurMin, TElement* pointeurSurMax)
 // L est supposée non vide
 // Cette procédure donne la plus petite et la plus grande valeurs de L.
 // Version itérative.
 {
-	*pointeurSurMin = *pointeurSurMax = (int)sizeof(L);	// Instruction bidon, à remplacer !
+	*pointeurSurMin = *pointeurSurMax = Tete(L);
+	L = Reste(L);
+	while (!EstVide(L)) {
+		if (Tete(L) > *pointeurSurMax)
+			*pointeurSurMax = Tete(L);
+
+		if (Tete(L) < *pointeurSurMin)
+			*pointeurSurMin = Tete(L);
+
+		L = Reste(L);
+	}
 }
 
 int NombreOccurrencesI(TElement valeurCherchee, TListe L)
 // Donne le nombre d'occurrences de valeurCherchee dans L.
 // Version itérative.
 {
-	return valeurCherchee+(int)sizeof(L);	// Instruction bidon, à remplacer !
+	TListe p = L;
+	int nbocc = 0;
+
+	while (!EstVide(p)) {
+		if (Tete(p) == valeurCherchee) {
+			nbocc += 1;
+			p = Reste(p);
+		}
+		else {
+			p = Reste(p);
+		}
+	}
+	
+	return nbocc;
 }
+
 
 int NombreOccurrencesR(TElement valeurCherchee, TListe L)
 // Donne le nombre d'occurrences de valeurCherchee dans L.
 // Version récursive.
 {
-	return valeurCherchee+(int)sizeof(L);	// Instruction bidon, à remplacer !
+	TListe p = L;
+	int nbocc = 0;
+	if (EstVide(p)) {
+		return nbocc;
+	}
+	if (Tete(p) == valeurCherchee) {
+		return 1 + NombreOccurrencesR(valeurCherchee, Reste(p));
+
+	}
+
+	else {
+		return NombreOccurrencesR(valeurCherchee, Reste(p));
+	}
+
 }
 
 bool PresenceI(TElement valeurCherchee, TListe L)
 // Vérifie la présence de valeurCherchee dans L. Version itérative !
 {
-	return 	valeurCherchee == (int)sizeof(L);	// Instruction bidon, à remplacer !
+
+	while (!EstVide(L))
+
+	{
+		if (Tete(L) == valeurCherchee)
+		{
+			return true;
+
+
+		}
+		else {
+			L = Reste(L);
+		}
+
+	}
+
+	return false;
 }
 
 bool PresenceR(TElement valeurCherchee, TListe L)
 // Vérifie la présence de valeurCherchee dans L. Version itérative !
 {
-	return 	valeurCherchee == (int)sizeof(L);	// Instruction bidon, à remplacer !
+
+
+
+	if (EstVide(L)) {
+		return 0;
+	}
+
+	if (valeurCherchee == Tete(L))
+	{
+		return valeurCherchee;
+
+	}
+
+	else {
+		L = Reste(L);
+		return PresenceR(valeurCherchee, L);
+	}
+
 }
 
 void AfficherListeI(TListe L)
 // Affiche la liste entre parenthèses sans passer à la ligne.
 // Exemple : (1, 2, 3)
 {
-	printf ("%d\n", (int)sizeof(L));	// Instruction bidon, à remplacer !
+	printf("%d\n", (int)sizeof(L));	// Instruction bidon, à remplacer !
 }
 
 TListe InsertionEnQueueI(TElement v, TListe L)
 // Donne une ^liste égale à L mais avec une valeur en plus à la fin : v. Version itérative !
 {
-	return Cons (v+(int)sizeof (L), ConsVide ());	// Instruction bidon, à remplacer !
+	return Cons(v + (int)sizeof(L), ConsVide());	// Instruction bidon, à remplacer !
 }
 
 TListe InsertionEnQueueR(TElement v, TListe L)
@@ -146,7 +218,7 @@ TListe InsertionEnQueueR(TElement v, TListe L)
 	return Cons(v + (int)sizeof(L), ConsVide());	// Instruction bidon, à remplacer !
 }
 
-void RemplacementsR(TElement v1, TElement v2, TListe *pointeurSurL)
+void RemplacementsR(TElement v1, TElement v2, TListe* pointeurSurL)
 // Remplace les occurrences de v1 par v2 dans *pointeurSurL
 {
 	v1 = v2 + (int)sizeof(*pointeurSurL);	// Instruction bidon, à remplacer !
@@ -166,7 +238,7 @@ TListe InversionI(TListe L)
 	return Cons((int)sizeof(L), ConsVide());	// Instruction bidon, à remplacer !
 }
 
-int main(int, char **)
+int main(int, char**)
 {
 	/////////////////////////////////////////////////////////////////////////////
 	//
@@ -191,7 +263,7 @@ int main(int, char **)
 		L5 = Cons(1, Cons(2, Cons(3, Cons(4, Cons(5, ConsVide())))));
 		L8 = Cons(6, Cons(4, Cons(4, Cons(3, Cons(9, Cons(6, Cons(4, Cons(5, ConsVide()))))))));
 	}
-	catch (ExceptionListesChainees &e) {
+	catch (ExceptionListesChainees& e) {
 		printf_s("%s", e.what());
 		printf(". La creation des listes a echoue, on arrete tout\n");
 		printf("\n");
@@ -218,7 +290,7 @@ int main(int, char **)
 		else
 			printf("La taille (version iterative) est FAUSSE\n");
 	}
-	catch (ExceptionListesChainees &e) {
+	catch (ExceptionListesChainees& e) {
 		printf_s("%s", e.what());
 		printf(". TailleI a echoue\n");
 	}
@@ -240,7 +312,7 @@ int main(int, char **)
 		else
 			printf("La taille (version recursive) est FAUSSE\n");
 	}
-	catch (ExceptionListesChainees &e) {
+	catch (ExceptionListesChainees& e) {
 		printf_s("%s", e.what());
 		printf(". TailleR a echoue\n");
 	}
@@ -261,7 +333,7 @@ int main(int, char **)
 		else
 			printf("\nLa Somme (version iterative) est FAUSSE\n");
 	}
-	catch (ExceptionListesChainees &e) {
+	catch (ExceptionListesChainees& e) {
 		printf_s("%s", e.what());
 		printf(". SommeI a echoue\n");
 	}
@@ -282,7 +354,7 @@ int main(int, char **)
 		else
 			printf("La Somme (version recursive) est FAUSSE\n");
 	}
-	catch (ExceptionListesChainees &e) {
+	catch (ExceptionListesChainees& e) {
 		printf_s("%s", e.what());
 		printf(". SommeI a echoue\n");
 	}
@@ -307,7 +379,7 @@ int main(int, char **)
 		else
 			printf("\nLes min et max d'une liste (version iterative) sont MAL calcules\n");
 	}
-	catch (ExceptionListesChainees &e) {
+	catch (ExceptionListesChainees& e) {
 		printf_s("%s", e.what());
 		printf(". MinEtMaxI a echoue\n");
 	}
@@ -332,7 +404,7 @@ int main(int, char **)
 		else
 			printf("Les min et max d'une liste (version recursive) sont MAL calcules\n");
 	}
-	catch (ExceptionListesChainees &e) {
+	catch (ExceptionListesChainees& e) {
 		printf_s("%s", e.what());
 		printf(". MaxEtMinR a echoue\n");
 	}
@@ -356,7 +428,7 @@ int main(int, char **)
 		else
 			printf("\nLe nombre d'occurrences (version iterative) est FAUX\n");
 	}
-	catch (ExceptionListesChainees &e) {
+	catch (ExceptionListesChainees& e) {
 		printf_s("%s", e.what());
 		printf(". NombreOccurrencesI a echoue\n");
 	}
@@ -380,7 +452,7 @@ int main(int, char **)
 		else
 			printf("Le nombre d'occurrences (version recursive) est FAUX\n");
 	}
-	catch (ExceptionListesChainees &e) {
+	catch (ExceptionListesChainees& e) {
 		printf_s("%s", e.what());
 		printf(". NombreOccurrencesR a echoue\n");
 	}
@@ -388,7 +460,7 @@ int main(int, char **)
 		printf("NombreOccurrencesR a echoue\n");
 	}
 
-	try{
+	try {
 		////////////////////////////////////////////////////
 		//
 		// Tests de la fonction PresenceI
@@ -402,7 +474,7 @@ int main(int, char **)
 		else
 			printf("\nLe test de presence (version iterative) est FAUX\n");
 	}
-	catch (ExceptionListesChainees &e) {
+	catch (ExceptionListesChainees& e) {
 		printf_s("%s", e.what());
 		printf(". PresenceI a echoue\n");
 	}
@@ -424,7 +496,7 @@ int main(int, char **)
 		else
 			printf("Le test de presence (version recursive) est FAUX\n");
 	}
-	catch (ExceptionListesChainees &e) {
+	catch (ExceptionListesChainees& e) {
 		printf_s("%s", e.what());
 		printf(". PresenceR a echoue\n");
 	}
@@ -474,7 +546,7 @@ int main(int, char **)
 			bon = false;
 		}
 	}
-	catch (ExceptionListesChainees &e) {
+	catch (ExceptionListesChainees& e) {
 		printf_s("%s", e.what());
 		printf(". Le premier test de InsertionEnQueueI a echoue\n");
 		bon = false;
@@ -495,7 +567,7 @@ int main(int, char **)
 			bon = false;
 		}
 	}
-	catch (ExceptionListesChainees &e) {
+	catch (ExceptionListesChainees& e) {
 		printf_s("%s", e.what());
 		printf(". Le deuxieme test de InsertionEnQueueI a echoue\n");
 		bon = false;
@@ -516,7 +588,7 @@ int main(int, char **)
 			bon = false;
 		}
 	}
-	catch (ExceptionListesChainees &e) {
+	catch (ExceptionListesChainees& e) {
 		printf_s("%s", e.what());
 		printf(". Le troisieme test de InsertionEnQueueI a echoue\n");
 		bon = false;
@@ -536,7 +608,7 @@ int main(int, char **)
 	////////////////////////////////////////////////////
 	bon = true;
 
-	try  {
+	try {
 		v = 1; L = L0;
 		printf("\nLe resultat de l'insertion recursive de %d en queue de ", v);
 		AfficherListeI(L);
@@ -547,7 +619,7 @@ int main(int, char **)
 			bon = false;
 		}
 	}
-	catch (ExceptionListesChainees &e) {
+	catch (ExceptionListesChainees& e) {
 		printf_s("%s", e.what());
 		printf(". Le premier test de InsertionEnQueueR a echoue\n");
 		bon = false;
@@ -568,7 +640,7 @@ int main(int, char **)
 			bon = false;
 		}
 	}
-	catch (ExceptionListesChainees &e) {
+	catch (ExceptionListesChainees& e) {
 		printf_s("%s", e.what());
 		printf(". Le deuxieme test de InsertionEnQueueR a echoue\n");
 		bon = false;
@@ -589,7 +661,7 @@ int main(int, char **)
 			bon = false;
 		}
 	}
-	catch (ExceptionListesChainees &e) {
+	catch (ExceptionListesChainees& e) {
 		printf_s("%s", e.what());
 		printf(". Le troisieme test de InsertionEnQueueR a echoue\n");
 		bon = false;
@@ -624,7 +696,7 @@ int main(int, char **)
 			bon = false;
 		}
 	}
-	catch (ExceptionListesChainees &e) {
+	catch (ExceptionListesChainees& e) {
 		printf_s("%s", e.what());
 		printf(". Le premier test de RemplacementsR a echoue\n");
 		bon = false;
@@ -647,7 +719,7 @@ int main(int, char **)
 			bon = false;
 		}
 	}
-	catch (ExceptionListesChainees &e) {
+	catch (ExceptionListesChainees& e) {
 		printf_s("%s", e.what());
 		printf(". Le deuxieme test de RemplacementsR a echoue\n");
 		bon = false;
@@ -671,7 +743,7 @@ int main(int, char **)
 			bon = false;
 		}
 	}
-	catch (ExceptionListesChainees &e) {
+	catch (ExceptionListesChainees& e) {
 		printf_s("%s", e.what());
 		printf(". Le troisieme test de RemplacementsR a echoue\n");
 		bon = false;
@@ -704,7 +776,7 @@ int main(int, char **)
 			bon = false;
 		}
 	}
-	catch (ExceptionListesChainees &e) {
+	catch (ExceptionListesChainees& e) {
 		printf_s("%s", e.what());
 		printf(". Le premier test de InversionI a echoue\n");
 		bon = false;
@@ -728,7 +800,7 @@ int main(int, char **)
 			bon = false;
 		}
 	}
-	catch (ExceptionListesChainees &e) {
+	catch (ExceptionListesChainees& e) {
 		printf_s("%s", e.what());
 		printf(". Le deuxieme test de InversionI a echoue\n");
 		bon = false;
@@ -761,7 +833,7 @@ int main(int, char **)
 			bon = false;
 		}
 	}
-	catch (ExceptionListesChainees &e) {
+	catch (ExceptionListesChainees& e) {
 		printf_s("%s", e.what());
 		printf(". Le premier test de InversionR a echoue\n");
 		bon = false;
@@ -785,7 +857,7 @@ int main(int, char **)
 			bon = false;
 		}
 	}
-	catch (ExceptionListesChainees &e) {
+	catch (ExceptionListesChainees& e) {
 		printf_s("%s", e.what());
 		printf(". Le deuxieme test de InversionR a echoue\n");
 		bon = false;
@@ -799,7 +871,7 @@ int main(int, char **)
 		NombrePoints++;
 
 	printf("\n************************************************\n");
-	printf("* NOTE MAX : %3.1lf / 20\n", 4.*NombrePoints / 3.);
+	printf("* NOTE MAX : %3.1lf / 20\n", 4. * NombrePoints / 3.);
 	printf("************************************************\n");
 
 	printf("\n");
