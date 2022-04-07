@@ -157,22 +157,13 @@ int NombreOccurrencesR(TElement valeurCherchee, TListe L)
 bool PresenceI(TElement valeurCherchee, TListe L)
 // Vérifie la présence de valeurCherchee dans L. Version itérative !
 {
-
-	while (!EstVide(L))
-
-	{
-		if (Tete(L) == valeurCherchee)
-		{
+	while (!EstVide(L)){
+		if (Tete(L) == valeurCherchee){
 			return true;
-
-
-		}
-		else {
+		} else {
 			L = Reste(L);
 		}
-
 	}
-
 	return false;
 }
 
@@ -183,17 +174,12 @@ bool PresenceR(TElement valeurCherchee, TListe L)
 		return 0;
 	}
 
-	if (valeurCherchee == Tete(L))
-	{
+	if (valeurCherchee == Tete(L)){
 		return valeurCherchee;
-
-	}
-
-	else {
+	} else {
 		L = Reste(L);
 		return PresenceR(valeurCherchee, L);
 	}
-
 }
 
 void AfficherListeI(TListe L)
@@ -214,15 +200,10 @@ void AfficherListeI(TListe L)
 
 }
 
+
 TListe InsertionEnQueueI(TElement v, TListe L)
 // Donne une ^liste égale à L mais avec une valeur en plus à la fin : v. Version itérative !
 {
-	while(!EstVide(L)){
-		if v == Tete(L){
-			p = 
-			
-		}
-	}
 	return Cons(v + (int)sizeof(L), ConsVide());	// Instruction bidon, à remplacer !
 }
 
