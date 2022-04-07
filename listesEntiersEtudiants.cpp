@@ -23,7 +23,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "Listes.h"
+#include "listes.h"
 
 
 int TailleI(TListe L)
@@ -179,9 +179,6 @@ bool PresenceI(TElement valeurCherchee, TListe L)
 bool PresenceR(TElement valeurCherchee, TListe L)
 // Vérifie la présence de valeurCherchee dans L. Version itérative !
 {
-
-
-
 	if (EstVide(L)) {
 		return 0;
 	}
@@ -203,12 +200,29 @@ void AfficherListeI(TListe L)
 // Affiche la liste entre parenthèses sans passer à la ligne.
 // Exemple : (1, 2, 3)
 {
-	printf("%d\n", (int)sizeof(L));	// Instruction bidon, à remplacer !
+	printf("(");
+	while(!EstVide(L)){
+		printf("%d", Tete(L));
+		L = Reste(L);
+
+		if (!EstVide(L)){
+			printf(", ");
+		} else {
+			printf(") \n");
+		}
+	}
+
 }
 
 TListe InsertionEnQueueI(TElement v, TListe L)
 // Donne une ^liste égale à L mais avec une valeur en plus à la fin : v. Version itérative !
 {
+	while(!EstVide(L)){
+		if v == Tete(L){
+			p = 
+			
+		}
+	}
 	return Cons(v + (int)sizeof(L), ConsVide());	// Instruction bidon, à remplacer !
 }
 
@@ -264,7 +278,7 @@ int main(int, char**)
 		L8 = Cons(6, Cons(4, Cons(4, Cons(3, Cons(9, Cons(6, Cons(4, Cons(5, ConsVide()))))))));
 	}
 	catch (ExceptionListesChainees& e) {
-		printf_s("%s", e.what());
+		printf("%s", e.what());
 		printf(". La creation des listes a echoue, on arrete tout\n");
 		printf("\n");
 		system("pause");
@@ -291,7 +305,7 @@ int main(int, char**)
 			printf("La taille (version iterative) est FAUSSE\n");
 	}
 	catch (ExceptionListesChainees& e) {
-		printf_s("%s", e.what());
+		printf("%s", e.what());
 		printf(". TailleI a echoue\n");
 	}
 	catch (...) {
@@ -313,7 +327,7 @@ int main(int, char**)
 			printf("La taille (version recursive) est FAUSSE\n");
 	}
 	catch (ExceptionListesChainees& e) {
-		printf_s("%s", e.what());
+		printf("%s", e.what());
 		printf(". TailleR a echoue\n");
 	}
 	catch (...) {
@@ -334,7 +348,7 @@ int main(int, char**)
 			printf("\nLa Somme (version iterative) est FAUSSE\n");
 	}
 	catch (ExceptionListesChainees& e) {
-		printf_s("%s", e.what());
+		printf("%s", e.what());
 		printf(". SommeI a echoue\n");
 	}
 	catch (...) {
@@ -355,7 +369,7 @@ int main(int, char**)
 			printf("La Somme (version recursive) est FAUSSE\n");
 	}
 	catch (ExceptionListesChainees& e) {
-		printf_s("%s", e.what());
+		printf("%s", e.what());
 		printf(". SommeI a echoue\n");
 	}
 	catch (...) {
@@ -380,7 +394,7 @@ int main(int, char**)
 			printf("\nLes min et max d'une liste (version iterative) sont MAL calcules\n");
 	}
 	catch (ExceptionListesChainees& e) {
-		printf_s("%s", e.what());
+		printf("%s", e.what());
 		printf(". MinEtMaxI a echoue\n");
 	}
 	catch (...) {
@@ -405,7 +419,7 @@ int main(int, char**)
 			printf("Les min et max d'une liste (version recursive) sont MAL calcules\n");
 	}
 	catch (ExceptionListesChainees& e) {
-		printf_s("%s", e.what());
+		printf("%s", e.what());
 		printf(". MaxEtMinR a echoue\n");
 	}
 	catch (...) {
@@ -429,7 +443,7 @@ int main(int, char**)
 			printf("\nLe nombre d'occurrences (version iterative) est FAUX\n");
 	}
 	catch (ExceptionListesChainees& e) {
-		printf_s("%s", e.what());
+		printf("%s", e.what());
 		printf(". NombreOccurrencesI a echoue\n");
 	}
 	catch (...) {
@@ -453,7 +467,7 @@ int main(int, char**)
 			printf("Le nombre d'occurrences (version recursive) est FAUX\n");
 	}
 	catch (ExceptionListesChainees& e) {
-		printf_s("%s", e.what());
+		printf("%s", e.what());
 		printf(". NombreOccurrencesR a echoue\n");
 	}
 	catch (...) {
@@ -475,7 +489,7 @@ int main(int, char**)
 			printf("\nLe test de presence (version iterative) est FAUX\n");
 	}
 	catch (ExceptionListesChainees& e) {
-		printf_s("%s", e.what());
+		printf("%s", e.what());
 		printf(". PresenceI a echoue\n");
 	}
 	catch (...) {
@@ -497,7 +511,7 @@ int main(int, char**)
 			printf("Le test de presence (version recursive) est FAUX\n");
 	}
 	catch (ExceptionListesChainees& e) {
-		printf_s("%s", e.what());
+		printf("%s", e.what());
 		printf(". PresenceR a echoue\n");
 	}
 	catch (...) {
@@ -515,7 +529,7 @@ int main(int, char**)
 		printf("SI CE N'EST PAS LE CAS, les prochains affichages de listes sont faux\n");
 	}
 	catch (ExceptionListesChainees& e) {
-		printf_s("%s", e.what());
+		printf("%s", e.what());
 		printf(". AfficherListe echoue\n");
 	}
 	catch (...) {
@@ -547,7 +561,7 @@ int main(int, char**)
 		}
 	}
 	catch (ExceptionListesChainees& e) {
-		printf_s("%s", e.what());
+		printf("%s", e.what());
 		printf(". Le premier test de InsertionEnQueueI a echoue\n");
 		bon = false;
 	}
@@ -568,7 +582,7 @@ int main(int, char**)
 		}
 	}
 	catch (ExceptionListesChainees& e) {
-		printf_s("%s", e.what());
+		printf("%s", e.what());
 		printf(". Le deuxieme test de InsertionEnQueueI a echoue\n");
 		bon = false;
 	}
@@ -589,7 +603,7 @@ int main(int, char**)
 		}
 	}
 	catch (ExceptionListesChainees& e) {
-		printf_s("%s", e.what());
+		printf("%s", e.what());
 		printf(". Le troisieme test de InsertionEnQueueI a echoue\n");
 		bon = false;
 	}
@@ -620,7 +634,7 @@ int main(int, char**)
 		}
 	}
 	catch (ExceptionListesChainees& e) {
-		printf_s("%s", e.what());
+		printf("%s", e.what());
 		printf(". Le premier test de InsertionEnQueueR a echoue\n");
 		bon = false;
 	}
@@ -641,7 +655,7 @@ int main(int, char**)
 		}
 	}
 	catch (ExceptionListesChainees& e) {
-		printf_s("%s", e.what());
+		printf("%s", e.what());
 		printf(". Le deuxieme test de InsertionEnQueueR a echoue\n");
 		bon = false;
 	}
@@ -662,7 +676,7 @@ int main(int, char**)
 		}
 	}
 	catch (ExceptionListesChainees& e) {
-		printf_s("%s", e.what());
+		printf("%s", e.what());
 		printf(". Le troisieme test de InsertionEnQueueR a echoue\n");
 		bon = false;
 	}
@@ -697,7 +711,7 @@ int main(int, char**)
 		}
 	}
 	catch (ExceptionListesChainees& e) {
-		printf_s("%s", e.what());
+		printf("%s", e.what());
 		printf(". Le premier test de RemplacementsR a echoue\n");
 		bon = false;
 	}
@@ -720,7 +734,7 @@ int main(int, char**)
 		}
 	}
 	catch (ExceptionListesChainees& e) {
-		printf_s("%s", e.what());
+		printf("%s", e.what());
 		printf(". Le deuxieme test de RemplacementsR a echoue\n");
 		bon = false;
 	}
@@ -744,7 +758,7 @@ int main(int, char**)
 		}
 	}
 	catch (ExceptionListesChainees& e) {
-		printf_s("%s", e.what());
+		printf("%s", e.what());
 		printf(". Le troisieme test de RemplacementsR a echoue\n");
 		bon = false;
 	}
@@ -777,7 +791,7 @@ int main(int, char**)
 		}
 	}
 	catch (ExceptionListesChainees& e) {
-		printf_s("%s", e.what());
+		printf("%s", e.what());
 		printf(". Le premier test de InversionI a echoue\n");
 		bon = false;
 	}
@@ -801,7 +815,7 @@ int main(int, char**)
 		}
 	}
 	catch (ExceptionListesChainees& e) {
-		printf_s("%s", e.what());
+		printf("%s", e.what());
 		printf(". Le deuxieme test de InversionI a echoue\n");
 		bon = false;
 	}
@@ -834,7 +848,7 @@ int main(int, char**)
 		}
 	}
 	catch (ExceptionListesChainees& e) {
-		printf_s("%s", e.what());
+		printf("%s", e.what());
 		printf(". Le premier test de InversionR a echoue\n");
 		bon = false;
 	}
@@ -858,7 +872,7 @@ int main(int, char**)
 		}
 	}
 	catch (ExceptionListesChainees& e) {
-		printf_s("%s", e.what());
+		printf("%s", e.what());
 		printf(". Le deuxieme test de InversionR a echoue\n");
 		bon = false;
 	}
