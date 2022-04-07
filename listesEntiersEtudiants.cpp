@@ -269,9 +269,8 @@ void RemplacementsR(TElement v1, TElement v2, TListe* pointeurSurL)
 
 		if(Tete(*pointeurSurL) == v1){
 			*pointeurSurL = Cons(v2, R);
-		} else {
+		} else 
 			*pointeurSurL = Cons(Tete(*pointeurSurL), R);
-		}
 	}
 }
 
@@ -302,7 +301,7 @@ TListe InversionI(TListe L)
 		Resultat = Cons(Tete(p), Resultat);
 		p = Reste(p);
 	} 	
-	return Cons((int)sizeof(L), ConsVide());	// Instruction bidon, à remplacer !
+	return p;
 }
 
 int main(int, char**)
