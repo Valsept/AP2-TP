@@ -197,39 +197,111 @@ void AfficherListeI(TListe L)
 			printf(") \n");
 		}
 	}
-
 }
 
 
 TListe InsertionEnQueueI(TElement v, TListe L)
-// Donne une ^liste égale à L mais avec une valeur en plus à la fin : v. Version itérative !
+/*
+// Donne une liste égale à L mais avec une valeur en plus à la fin : v. Version itérative !
+Fonction qui insère un élément en queue de la liste
+Entrées : 	v de type TElement
+			L de type TListe
+Sorties : 	/
+Return 	:	La liste avec v en queue de liste
+*/
 {
-	return Cons(v + (int)sizeof(L), ConsVide());	// Instruction bidon, à remplacer !
+	//TListe LInversee = ConsVide();
+	TListe Resultat = ConsVide();
+	TListe p = ConsVide();
+	//Je parcours la liste et je construis une liste inversee	
+	while(!EstVide(L)){
+		p = Cons(Tete(L), p);
+		L = Reste(L);
+	}
+	/* // J'insère au début de la liste 
+	LInversee = Cons(v, LInversee);
+	// Maintenant je la remets à l'endroit
+	p = LInversee; */
+
+	p = Cons(v, p);
+	while(!EstVide(p)){
+		Resultat = Cons(Tete(p), Resultat);
+		p = Reste(p);
+	}
+	return Resultat;
+	//return Cons(v + (int)sizeof(L), ConsVide());	// Instruction bidon, à remplacer !
 }
+
+
 
 TListe InsertionEnQueueR(TElement v, TListe L)
 // Donne une ^liste égale à L mais avec une valeur en plus à la fin : v. Version récursive !
 {
-	return Cons(v + (int)sizeof(L), ConsVide());	// Instruction bidon, à remplacer !
+	//TListe LInversee = ConsVide();
+	TListe Resultat = ConsVide();
+	TListe p = ConsVide();
+	//Je parcours la liste et je construis une liste inversee	
+	while(!EstVide(L)){
+		p = Cons(Tete(L), p);
+		L = Reste(L);
+	}
+	/* // J'insère au début de la liste 
+	LInversee = Cons(v, LInversee);
+	// Maintenant je la remets à l'endroit
+	p = LInversee; */
+
+	p = Cons(v, p);
+	while(!EstVide(p)){
+		Resultat = Cons(Tete(p), Resultat);
+		p = Reste(p);
+	}
+	return Resultat;
 }
+
+
 
 void RemplacementsR(TElement v1, TElement v2, TListe* pointeurSurL)
 // Remplace les occurrences de v1 par v2 dans *pointeurSurL
 {
-	v1 = v2 + (int)sizeof(*pointeurSurL);	// Instruction bidon, à remplacer !
+	if(!EstVide(*pointeurSurL)){
+		TListe R = Reste(*pointeurSurL);
+		RemplacementsR(v1, v2, &R);
+
+		if(Tete(*pointeurSurL) == v1){
+			*pointeurSurL = Cons(v2, R);
+		} else {
+			*pointeurSurL = Cons(Tete(*pointeurSurL), R);
+		}
+	}
 }
 
 TListe InversionR(TListe L)
 // Donne une liste contenant les mêmes éléments que L mais dans l'ordre inverse. 
 // Version itérative !
 {
-	return Cons((int)sizeof(L), ConsVide());	// Instruction bidon, à remplacer !
+	TListe Resultat = ConsVide();
+	TListe p = ConsVide();
+	//Je parcours la liste et je construis une liste inversee	
+
+	if(EstVide(L)){
+		return ConsVide();
+	} else {
+		return InsertionEnQueueR(Tete(L), InversionR(Reste(L)));
+	} 	
 }
 
 TListe InversionI(TListe L)
 // Donne une liste contenant les mêmes éléments que L mais dans l'ordre inverse. 
 // Version récursive !
 {
+	TListe Resultat, p;
+	p = L;
+	Resultat = ConsVide();
+
+	while(!EstVide(p)){
+		Resultat = Cons(Tete(p), Resultat);
+		p = Reste(p);
+	} 	
 	return Cons((int)sizeof(L), ConsVide());	// Instruction bidon, à remplacer !
 }
 
