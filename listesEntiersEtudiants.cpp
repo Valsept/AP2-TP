@@ -100,16 +100,15 @@ void MinEtMaxR(TListe L, TElement* pointeurSurMin, TElement* pointeurSurMax)
 // Cette procédure donne la plus petite et la plus grande valeurs de L.
 // Version itérative.
 {
-	*pointeurSurMin = *pointeurSurMax = Tete(L);
-	L = Reste(L);
-	while (!EstVide(L)) {
-		if (Tete(L) > *pointeurSurMax)
-			*pointeurSurMax = Tete(L);
-
+	if (EstVide(Reste(L))){
+		*pointeurSurMin = *pointeurSurMax = Tete(L);
+		
+    } else {
+		MinEtMaxR(Reste(L), pointeurSurMin, pointeurSurMax);
 		if (Tete(L) < *pointeurSurMin)
 			*pointeurSurMin = Tete(L);
-
-		L = Reste(L);
+		if (Tete(L) > *pointeurSurMax)
+			*pointeurSurMax = Tete(L);	
 	}
 }
 
